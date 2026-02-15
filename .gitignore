@@ -1,0 +1,134 @@
+# =========================
+# Python cache files
+# =========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# =========================
+# Build artifacts
+# =========================
+
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+
+# setuptools editable install artifacts
+pip-wheel-metadata/
+
+# =========================
+# Virtual environments
+# =========================
+
+.venv/
+venv/
+env/
+ENV/
+
+# Conda
+conda-env/
+.env/
+
+# =========================
+# Testing and coverage
+# =========================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+
+# =========================
+# IDE / Editor files
+# =========================
+
+.vscode/
+.idea/
+*.iml
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# =========================
+# OS files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Secrets and local configs
+# =========================
+
+.env
+.env.*
+*.env
+
+# API keys
+config.local.py
+
+# =========================
+# Distribution files
+# =========================
+
+*.tar.gz
+*.whl
+
+# =========================
+# Type checker cache
+# =========================
+
+.mypy_cache/
+.pyre/
+.pytype/
+
+# =========================
+# Ruff / Linter cache
+# =========================
+
+.ruff_cache/
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.bak
+*.swp
+*~
+
+# =========================
+# Test scripts (optional)
+# =========================
+
+tests_final/
+
+# =========================
+# Local datasets (optional)
+# =========================
+
+data/
+datasets/
+
+# =========================
+# OS encoding files
+# =========================
+
+desktop.ini

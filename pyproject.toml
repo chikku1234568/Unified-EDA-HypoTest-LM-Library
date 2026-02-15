@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hypotest"
+version = "0.1.0"
+description = "A Python library for hypothesis testing with automated assumptions"
+readme = "README.md"
+authors = [
+    {name = "Hypotest Contributors"},
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=1.5",
+    "numpy>=1.21",
+    "scipy>=1.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+llm = [
+    "openai>=1.0",
+    "anthropic>=0.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/chikku1234568/Unified-EDA-HypoTest-LM-Library"
+Repository = "https://github.com/chikku1234568/Unified-EDA-HypoTest-LM-Library"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["hypotest*"]
+
+[tool.setuptools.package-data]
+hypotest = ["py.typed"]
