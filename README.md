@@ -1,45 +1,54 @@
-Hypotest
+# Hypotest
 
 A Python library for deterministic hypothesis testing with automatic assumption checking and optional LLM-based interpretation.
 
 Hypotest provides a clean statistical engine designed for data scientists, researchers, and engineers who need reliable and reproducible statistical testing workflows.
 
-Overview
+---
+
+# Overview
 
 Hypotest simplifies hypothesis testing by providing:
 
-A deterministic statistical engine
-
-Automatic assumption validation (normality, variance homogeneity)
-
-Structured result objects with statistical metadata
-
-Optional LLM-based interpretation layer
-
-A safe Dataset abstraction for robust data handling
+- Deterministic statistical engine  
+- Automatic assumption validation (normality, variance homogeneity)  
+- Structured result objects with statistical metadata  
+- Optional LLM-based interpretation layer  
+- Safe `Dataset` abstraction for robust data handling  
 
 All statistical computations are deterministic and independent of LLM usage.
 
-Installation
+---
 
-Once published:
+# Installation
 
-pip install hypotest
+Install from PyPI:
 
+```bash
+pip install LM-hypotest
+```
 
 Development install:
 
+```bash
 git clone https://github.com/chikku1234568/Unified-EDA-HypoTest-LM-Library
-cd hypotest
+cd Unified-EDA-HypoTest-LM-Library
 pip install -e .
-
+```
 
 Optional LLM support:
 
-pip install hypotest[llm]
+```bash
+pip install LM-hypotest[llm]
+```
 
-Quick Start
-Example: Independent t-test
+---
+
+# Quick Start
+
+## Example: Independent t-test
+
+```python
 import pandas as pd
 import numpy as np
 
@@ -70,40 +79,47 @@ result = test.execute(
 )
 
 print(result)
-
-
-Output:
-
-TestResult(test='Independent t-test', feature='group', statistic=4.231, p=0.00003, significant)
-
-Automatic Assumption Checking
-
-Hypotest automatically checks statistical assumptions before or during test execution.
-
-for assumption in result.assumptions:
-    print(assumption.assumption_name, assumption.passed)
-
+```
 
 Example output:
 
+```
+TestResult(test='Independent t-test', feature='group', statistic=4.231, p=0.00003, significant)
+```
+
+---
+
+# Automatic Assumption Checking
+
+Hypotest automatically checks statistical assumptions:
+
+```python
+for assumption in result.assumptions:
+    print(assumption.assumption_name, assumption.passed)
+```
+
+Example output:
+
+```
 normality True
 homoscedasticity False
-
+```
 
 Each assumption provides:
 
-statistical result
+- Statistical result  
+- Interpretation  
+- Recommendation  
 
-interpretation
+---
 
-recommendation
+# Optional LLM Interpretation
 
-Optional LLM Interpretation
+Hypotest can generate natural-language explanations using OpenAI-compatible providers such as DeepSeek.
 
-Hypotest can generate natural-language explanations using any OpenAI-compatible provider.
+Example:
 
-Example using DeepSeek:
-
+```python
 hypotest.configure(
     llm_api_key="your-api-key",
     llm_base_url="https://api.deepseek.com/v1",
@@ -112,91 +128,94 @@ hypotest.configure(
 )
 
 print(result.explain())
-
+```
 
 Example output:
 
+```
 The independent t-test indicates a statistically significant difference between the two groups...
-
+```
 
 LLM interpretation is optional and does not affect statistical computation.
 
-Configuration
+---
+
+# Configuration
 
 Configure hypotest globally:
 
+```python
 hypotest.configure(
     llm_api_key="your-key",
     llm_base_url="https://api.deepseek.com/v1",
     llm_model="deepseek-chat",
     enable_llm_interpretation=True,
 )
-
+```
 
 View configuration:
 
+```python
 print(hypotest.info())
+```
 
-Dataset Abstraction
+---
+
+# Dataset Abstraction
 
 Hypotest uses a Dataset wrapper to provide safe data handling:
 
+```python
 from hypotest.core.dataset import Dataset
 
 dataset = Dataset(df)
-
+```
 
 This enables:
 
-safe missing value handling
+- Safe missing value handling  
+- Validation before test execution  
+- Future extensibility  
 
-validation before test execution
+---
 
-future extensibility
+# Supported Tests (Current MVP)
 
-Supported Tests (Current MVP)
-
-Independent t-test
+- Independent t-test  
 
 Planned:
 
-Welch's t-test
+- Welch's t-test  
+- Mann-Whitney U test  
+- ANOVA  
+- Chi-square test  
+- Correlation tests  
 
-Mann-Whitney U test
+---
 
-ANOVA
-
-Chi-square test
-
-Correlation tests
-
-Features
+# Features
 
 Core features implemented:
 
-Deterministic statistical engine
-
-Automatic assumption checking
-
-Structured TestResult objects
-
-Dataset abstraction layer
-
-Plug-in test registry system
-
-Optional LLM interpretation
+- Deterministic statistical engine  
+- Automatic assumption checking  
+- Structured `TestResult` objects  
+- Dataset abstraction layer  
+- Plug-in test registry system  
+- Optional LLM interpretation  
 
 Planned features:
 
-Automatic test recommendation
+- Automatic test recommendation  
+- Effect size library  
+- Automated reporting  
+- Additional statistical tests  
 
-Effect size library
+---
 
-Automated reporting
+# Example: Full Workflow
 
-Additional statistical tests
-
-Example: Full Workflow
+```python
 import pandas as pd
 import numpy as np
 import hypotest
@@ -224,8 +243,13 @@ for a in result.assumptions:
     print(a.assumption_name, a.passed)
 
 print(result.explain())  # None if LLM disabled
+```
 
-Project Structure
+---
+
+# Project Structure
+
+```
 hypotest/
 ├── core/
 │   ├── dataset.py
@@ -233,7 +257,7 @@ hypotest/
 │
 ├── tests/
 │   ├── parametric/
-│       ├── ttest.py
+│   │   ├── ttest.py
 │
 ├── assumptions/
 │   ├── normality.py
@@ -247,31 +271,37 @@ hypotest/
 │   ├── manager.py
 │
 ├── info.py
+```
 
-Requirements
+---
 
-Python ≥ 3.10
+# Requirements
 
-pandas ≥ 1.5
+Core requirements:
 
-numpy ≥ 1.21
-
-scipy ≥ 1.9
+- Python ≥ 3.10  
+- pandas ≥ 1.5  
+- numpy ≥ 1.21  
+- scipy ≥ 1.9  
 
 Optional:
 
-openai-compatible client (for LLM interpretation)
+- OpenAI-compatible client (for LLM interpretation)
 
-Philosophy
+---
+
+# Philosophy
 
 Hypotest separates:
 
-Deterministic statistical computation
-
-Probabilistic natural-language interpretation
+- Deterministic statistical computation  
+- Probabilistic natural-language interpretation  
 
 This ensures statistical correctness while enabling explainability.
 
-License
+---
+
+# License
 
 MIT License
+````0
